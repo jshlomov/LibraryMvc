@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LibraryMvc.Models.Shelf>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>מדפים</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Library)
+            </th>
+            <th>
+                מספר ספרים
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FreeSpace)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Library.genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeSpace)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">ערוך</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">מחק</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Create" class="btn btn-success">הוסף מדף</a>
+</div>

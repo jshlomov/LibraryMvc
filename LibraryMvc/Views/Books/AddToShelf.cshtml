@@ -1,0 +1,78 @@
+﻿@model LibraryMvc.Models.Book
+
+@{
+    ViewData["Title"] = "AddToShelf";
+    bool check = ViewBag.Confirm;
+}
+
+@* <style>
+    .disabled {
+        pointer-events: none; /* Prevents clicks and interactions */
+        opacity: 0.5; /* Makes it look disabled */
+        cursor: not-allowed; /* Shows a not-allowed cursor on hover */
+    }
+
+    /* Specific styling for disabled buttons */
+    .disabledBtn {
+        background-color: #ccc; /* Change background color to indicate disabled */
+        color: #666; /* Change text color to indicate disabled */
+    }
+</style> *@
+
+<h1>Create</h1>
+
+@* @if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning">
+        <p>@ViewBag.Message</p>
+        <a class="btn btn-primary" asp-route-confirm="false">ביטול</a>
+        </div>
+
+} *@
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddToShelf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Name" type="hidden" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Hight" type="hidden" class="form-control" />
+                <span asp-validation-for="Hight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Width" type="hidden" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="SetId" type="hidden" class="form-control" />
+                <span asp-validation-for="SetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="genre" type="hidden" class="form-control" />
+                <span asp-validation-for="genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShelfId" class="control-label"></label>
+                <select asp-for="ShelfId" class="form-control" asp-items="ViewBag.ShelfIds"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="הוסף למדף" class="btn btn-primary @* @(ViewBag.Confirm == true ? "disabled disabledBtn" : "") *@" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

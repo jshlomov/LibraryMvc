@@ -1,0 +1,70 @@
+﻿@model LibraryMvc.Models.Library
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>מדפים</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelves.FirstOrDefault().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelves.FirstOrDefault().Hight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelves.FirstOrDefault().Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelves.FirstOrDefault().Library)
+            </th>
+            <th>
+                מספר ספרים
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelves.FirstOrDefault().FreeSpace)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Shelves)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Library.genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeSpace)
+                </td>
+                <td>
+                    <a asp-controller="Shelves" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">ערוך</a>
+                    <a asp-controller="Shelves" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">מחק</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Shelves" asp-action="Create" asp-route-Id="@Model.Id" class="btn btn-outline-success">הוסף מדף</a>
+</div>
+
+<div style="margin-top:20px">
+
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LibraryMvc.Models.Library>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .my-card {
+        margin: 10px;
+    }
+</style>
+
+<h1>ספריות</h1>
+
+<div dir="rtl" class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card my-card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@item.genre</h5>
+                @* <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6> *@
+                <p class="card-text">כל ספרי ה @item.genre סטים ובודדים</p>
+                <a a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">הצג מדפים</a>
+                <a a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">מחיקה</a>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <a asp-action="Create" class="btn btn-success my-card">הוסף ספריה</a>
+</div>
